@@ -1,4 +1,4 @@
-import useApi from './useApi';
+import useStateApi from './useStateApi';
 
 export type CounterState = {
   count: number;
@@ -36,7 +36,10 @@ const counterStateApiFactory = ({ state, setState }: Props) => {
     incrementBy,
     decrementBy,
 
-    state,
+    count,
+    min,
+    max,
+
     setState
   };
 };
@@ -48,5 +51,5 @@ const useCounterStateApi = ({
   min = 0,
   max
 }: CounterState): ReturnType<typeof counterStateApiFactory> =>
-  useApi(counterStateApiFactory, { count, min, max });
+  useStateApi(counterStateApiFactory, { count, min, max });
 export default useCounterStateApi;
