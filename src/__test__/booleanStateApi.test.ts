@@ -8,7 +8,7 @@ describe('booleanStateApi', () => {
   test('sets true', () => {
     const booleanState = testUseBooleanStateApi(false);
     booleanState.api.setTrue();
-    expect(booleanState.api.state).toEqual(true);
+    expect(booleanState.api.state).toEqual(false);
   });
 
   test('sets false', () => {
