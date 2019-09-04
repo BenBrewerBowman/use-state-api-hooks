@@ -3,6 +3,7 @@
 > React hooks for managing and creating reusable stateful object patterns.
 
 [![NPM](https://img.shields.io/npm/v/use-state-api-hooks.svg)](https://www.npmjs.com/package/use-state-api-hooks) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Build Status](https://travis-ci.org/BenBrewerBowman/use-state-api-hooks.svg?branch=master)](https://travis-ci.org/BenBrewerBowman/use-state-api-hooks)
 
 ## Demo
 [![Edit use-state-api-hooks](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/use-state-api-hooks-6r4qh?fontsize=14)
