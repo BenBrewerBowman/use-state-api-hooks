@@ -1,7 +1,7 @@
 import createTestApi from './createTestApi';
 import { anchorElStateApiFactory, AnchorElState } from '../useAnchorElStateApi';
 
-const testUseAnchorElStateApi = <T>(initialState: AnchorElState) =>
+const testUseAnchorElStateApi = (initialState: AnchorElState) =>
   createTestApi(anchorElStateApiFactory, initialState);
 
 describe('anchorElStateApi', () => {

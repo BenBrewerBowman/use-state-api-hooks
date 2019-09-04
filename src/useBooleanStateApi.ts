@@ -1,4 +1,4 @@
-import useApi from './useApi';
+import useStateApi from './useStateApi';
 
 type Props = {
   state: boolean;
@@ -21,5 +21,5 @@ export { booleanStateApiFactory };
 const useBooleanStateApi = (
   initialState: boolean
 ): ReturnType<typeof booleanStateApiFactory> =>
-  useApi(booleanStateApiFactory, initialState);
+  useStateApi(booleanStateApiFactory, initialState);
 export default useBooleanStateApi;

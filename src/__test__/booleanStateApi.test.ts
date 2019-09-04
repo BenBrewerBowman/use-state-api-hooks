@@ -8,20 +8,20 @@ describe('booleanStateApi', () => {
   test('sets true', () => {
     const booleanState = testUseBooleanStateApi(false);
     booleanState.api.setTrue();
-    expect(booleanState.api.value).toEqual(true);
+    expect(booleanState.api.state).toEqual(true);
   });
 
   test('sets false', () => {
     const booleanState = testUseBooleanStateApi(true);
     booleanState.api.setFalse();
-    expect(booleanState.api.value).toEqual(false);
+    expect(booleanState.api.state).toEqual(false);
   });
 
   test('toggles state', () => {
     const booleanState = testUseBooleanStateApi(false);
     booleanState.api.toggle();
-    expect(booleanState.api.value).toEqual(true);
+    expect(booleanState.api.state).toEqual(true);
     booleanState.api.toggle();
-    expect(booleanState.api.value).toEqual(false);
+    expect(booleanState.api.state).toEqual(false);
   });
 });

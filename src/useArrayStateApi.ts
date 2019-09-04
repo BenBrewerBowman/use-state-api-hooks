@@ -1,4 +1,4 @@
-import useApi from './useApi';
+import useStateApi from './useStateApi';
 
 export type ArrayStateApi<T> = {
   clear: () => void;
@@ -90,6 +90,6 @@ const arrayStateApiFactory = <T>({
 export { arrayStateApiFactory };
 
 const useArrayStateApi = <T>(initialState: T[]): ArrayStateApi<T> =>
-  useApi(arrayStateApiFactory, initialState);
+  useStateApi(arrayStateApiFactory, initialState);
 
 export default useArrayStateApi;

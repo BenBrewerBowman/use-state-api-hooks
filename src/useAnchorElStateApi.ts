@@ -1,4 +1,4 @@
-import useApi from './useApi';
+import useStateApi from './useStateApi';
 
 export type AnchorElState = null | HTMLElement;
 
@@ -23,5 +23,5 @@ export { anchorElStateApiFactory };
 const useAnchorElStateApi = (
   initialValue: AnchorElState
 ): ReturnType<typeof anchorElStateApiFactory> =>
-  useApi(anchorElStateApiFactory, initialValue);
+  useStateApi(anchorElStateApiFactory, initialValue);
 export default useAnchorElStateApi;
