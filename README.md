@@ -16,6 +16,11 @@ or
 yarn add use-state-api-hooks
 ```
 
+## Idea 
+
+You can read about the inspiration behind this library [here](https://medium.com/free-code-camp/why-you-should-choose-usestate-instead-of-usereducer-ffc80057f815)
+
+
 ## State API Hooks 
 
 - [Boolean](#usebooleanstateapi)
