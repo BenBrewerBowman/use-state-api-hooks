@@ -1,4 +1,4 @@
-import createTestApi from './createTestApi';
+import { createTestApi } from './createTestApi';
 import { arrayStateApiFactory } from '../useArrayStateApi';
 
 const testUseArrayStateApi = (array: Array<any>) =>

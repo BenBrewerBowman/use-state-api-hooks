@@ -1,4 +1,4 @@
-import createTestApi from './createTestApi';
+import { createTestApi } from './createTestApi';
 import { booleanStateApiFactory } from '../useBooleanStateApi';
 
 const testUseBooleanStateApi = (bool: boolean) =>

@@ -1,11 +1,11 @@
-import useStateApi from './useStateApi';
+import { useStateApi } from './useStateApi';
 
 type Props = {
   state: boolean;
   setState: (value: boolean) => void;
 };
 
-const booleanStateApiFactory = ({ state, setState }: Props) => {
+export const booleanStateApiFactory = ({ state, setState }: Props) => {
   return {
     setTrue: () => setState(true),
     setFalse: () => setState(false),
@@ -16,10 +16,7 @@ const booleanStateApiFactory = ({ state, setState }: Props) => {
   };
 };
 
-export { booleanStateApiFactory };
-
-const useBooleanStateApi = (
+export const useBooleanStateApi = (
   initialState: boolean
 ): ReturnType<typeof booleanStateApiFactory> =>
   useStateApi(booleanStateApiFactory, initialState);
-export default useBooleanStateApi;

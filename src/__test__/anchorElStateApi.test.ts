@@ -1,4 +1,4 @@
-import createTestApi from './createTestApi';
+import { createTestApi } from './createTestApi';
 import { anchorElStateApiFactory, AnchorElState } from '../useAnchorElStateApi';
 
 const testUseAnchorElStateApi = (initialState: AnchorElState) =>

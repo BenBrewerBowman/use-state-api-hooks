@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 
-const useStateApi = (apiFactory: any, initialState: any) => {
+export const useStateApi = (apiFactory: any, initialState: any) => {
   const [state, setState] = useState(initialState);
   return useMemo(() => apiFactory({ state, setState }), [
     state,
@@ -8,5 +8,3 @@ const useStateApi = (apiFactory: any, initialState: any) => {
     apiFactory
   ]);
 };
-
-export default useStateApi;
