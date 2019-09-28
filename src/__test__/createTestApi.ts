@@ -1,4 +1,4 @@
-const createTestApi = (apiFactory: any, defaultValue: any) => {
+export const createTestApi = (apiFactory: any, defaultValue: any) => {
   let state = defaultValue;
   let setState = (updater: any) => {
     if (typeof updater === 'function') {
@@ -14,5 +14,3 @@ const createTestApi = (apiFactory: any, defaultValue: any) => {
   };
   return ref;
 };
-
-export default createTestApi;

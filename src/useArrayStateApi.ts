@@ -1,4 +1,4 @@
-import useStateApi from './useStateApi';
+import { useStateApi } from './useStateApi';
 
 export type ArrayStateApi<T> = {
   clear: () => void;
@@ -22,7 +22,7 @@ type Props<T> = {
   setState: (value: Array<T>) => void;
 };
 
-const arrayStateApiFactory = <T>({
+export const arrayStateApiFactory = <T>({
   state,
   setState
 }: Props<T>): ArrayStateApi<T> => {
@@ -87,9 +87,5 @@ const arrayStateApiFactory = <T>({
   };
 };
 
-export { arrayStateApiFactory };
-
-const useArrayStateApi = <T>(initialState: T[]): ArrayStateApi<T> =>
+export const useArrayStateApi = <T>(initialState: T[]): ArrayStateApi<T> =>
   useStateApi(arrayStateApiFactory, initialState);
-
-export default useArrayStateApi;

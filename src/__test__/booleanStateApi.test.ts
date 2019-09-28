@@ -1,4 +1,4 @@
-import createTestApi from './createTestApi';
+import { createTestApi } from './createTestApi';
 import { booleanStateApiFactory } from '../useBooleanStateApi';
 
 const testUseBooleanStateApi = (bool: boolean) =>
@@ -8,7 +8,7 @@ describe('booleanStateApi', () => {
   test('sets true', () => {
     const booleanState = testUseBooleanStateApi(false);
     booleanState.api.setTrue();
-    expect(booleanState.api.state).toEqual(false);
+    expect(booleanState.api.state).toEqual(true);
   });
 
   test('sets false', () => {

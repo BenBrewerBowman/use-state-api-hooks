@@ -1,4 +1,4 @@
-import createTestApi from './createTestApi';
+import { createTestApi } from './createTestApi';
 import { counterStateApiFactory, CounterState } from '../useCounterStateApi';
 
 const testUseCounterStateApi = (initialState: CounterState) =>
