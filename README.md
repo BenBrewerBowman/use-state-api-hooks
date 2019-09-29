@@ -37,24 +37,18 @@ State API for boolean values (T or F states)
 import React from "react";
 import { useBooleanStateApi } from "use-state-api-hooks";
 
-const styles = {
-  button: {
-    marginRight: 8,
-    marginBottom: 8
-  }
-};
 const BooleanExample = () => {
   const lightSwitch = useBooleanStateApi(false);
 
   return (
     <div>
-      <button onClick={lightSwitch.setTrue} style={styles.button}>
+      <button onClick={lightSwitch.setTrue} >
         Turn on
       </button>
-      <button onClick={lightSwitch.setFalse} style={styles.button}>
+      <button onClick={lightSwitch.setFalse} >
         Turn off
       </button>
-      <button onClick={lightSwitch.toggle} style={styles.button}>
+      <button onClick={lightSwitch.toggle} >
         Toggle
       </button>
 
@@ -84,13 +78,6 @@ State API for arrays (array states)
 import React from "react";
 import { useArrayStateApi } from "use-state-api-hooks";
 
-const styles = {
-  button: {
-    marginRight: 8,
-    marginBottom: 8
-  }
-};
-
 const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const ArrayExample = () => {
@@ -98,19 +85,18 @@ const ArrayExample = () => {
 
   return (
     <div>
-      <button onClick={list.clear} style={styles.button}>
+      <button onClick={list.clear} >
         Clear
       </button>
       <button
         onClick={() => list.push(list.state.length + 1)}
-        style={styles.button}
       >
         Push
       </button>
-      <button onClick={list.pop} style={styles.button}>
+      <button onClick={list.pop} >
         Pop
       </button>
-      <button onClick={list.reverse} style={styles.button}>
+      <button onClick={list.reverse} >
         Reverse
       </button>
 
@@ -193,20 +179,11 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
-const styles = {
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    width: "100%",
-    marginTop: 24
-  }
-};
-
 const AnchorElExample = () => {
   const { anchorEl, setAnchorEl, clearAnchorEl } = useAnchorElStateApi(null);
 
   return (
-    <div style={styles.root}>
+    <div >
       <Button onClick={setAnchorEl}>Open Menu</Button>
       <Menu
         anchorEl={anchorEl}
