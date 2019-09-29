@@ -120,13 +120,13 @@ export default ArrayExample;
 |  |  |
 | pop | Removes value from end of array |
 | push | Pushes value onto end of array |
-| shift | removes value from beginning of array (does nothing on empty array) |
+| shift | removes value from beginning of array (boundary safe) |
 | unshift | Adds values to beginning of array |
 | reverse | Reverses array |
 |  |  |
-| insertAt | Inserts value at a given index (Boundary safe) |
-| upsertAt | Replaces value at a given index (Boundary safe) |
-| deleteAt | Deletes value at a given index (Boundary safe) |
+| insertAt | Inserts value at a given index (boundary safe) |
+| upsertAt | Replaces value at a given index (boundary safe) |
+| deleteAt | Deletes value at a given index (boundary safe) |
 
 ## useCounterStateApi
 State API for counters
