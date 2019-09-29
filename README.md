@@ -6,7 +6,7 @@
 [![Build Status](https://travis-ci.org/BenBrewerBowman/use-state-api-hooks.svg?branch=master)](https://travis-ci.org/BenBrewerBowman/use-state-api-hooks)
 
 ## Demo
-[![Edit use-state-api-hooks](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/use-state-api-hooks-6r4qh?fontsize=14)
+[![Edit use-state-api-hooks](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/use-state-api-hooks-go48q?fontsize=14)
 
 ## Install
 
@@ -67,7 +67,7 @@ export default BooleanExample;
 ```
 
 ######
-| useBooleanStateApi | API Methods |
+| useBooleanStateApi API | Description |
 | ----------- | ----------- |
 | state | Boolean state |
 | setState | Sets the boolean state |
@@ -125,7 +125,7 @@ export default ArrayExample;
 ```
 
 ######
-| useArrayStateApi | API Methods |
+| useArrayStateApi API | Description |
 | ----------- | ----------- |
 | state | State of the array |
 | setState | Sets the array state |
@@ -145,8 +145,32 @@ export default ArrayExample;
 ## useCounterStateApi
 State API for counters
 
+```tsx
+import React from "react";
+import { useCounterStateApi } from "use-state-api-hooks";
+
+const CounterExample = () => {
+  const counter = useCounterStateApi({ min: 0, max: 10, count: 0 });
+
+  return (
+    <div>
+      <button onClick={counter.increment} >
+        Increment
+      </Button>
+      <button onClick={counter.decrement} >
+        Decrement
+      </Button>
+
+      <h4>
+        Count: {counter.count}
+      </h4>
+    </div>
+  );
+};
+```
+
 ######
-| useCounterStateApi | API Methods |
+| useCounterStateApi API | Description |
 | ----------- | ----------- |
 | count | Value of the counter |
 | min | Min boundary of the counter (default 0) |
@@ -162,8 +186,45 @@ State API for counters
 ## useAnchorElStateApi
 State API for anchor elements (ie a button that opens a menu in its location)
 
+```tsx
+import React from "react";
+import { useAnchorElStateApi } from "use-state-api-hooks";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+
+const styles = {
+  root: {
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: 24
+  }
+};
+
+const AnchorElExample = () => {
+  const { anchorEl, setAnchorEl, clearAnchorEl } = useAnchorElStateApi(null);
+
+  return (
+    <div style={styles.root}>
+      <Button onClick={setAnchorEl}>Open Menu</Button>
+      <Menu
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={clearAnchorEl}
+      >
+        <MenuItem onClick={clearAnchorEl}>Profile</MenuItem>
+        <MenuItem onClick={clearAnchorEl}>My account</MenuItem>
+        <MenuItem onClick={clearAnchorEl}>Logout</MenuItem>
+      </Menu>
+    </div>
+  );
+};
+```
+
 ######
-| useAnchorElStateApi | API Methods |
+| useAnchorElStateApi API | Description |
 | ----------- | ----------- |
 | anchorEl | The anchored element |
 | clearAnchorEl | Clears the anchored element |
