@@ -1,5 +1,6 @@
-import { createTestApi } from './createTestApi';
-import { counterStateApiFactory, CounterState } from '../useCounterStateApi';
+import { createTestApi } from '../createTestApi';
+import { counterStateApiFactory } from './useCounterStateApi';
+import { CounterState } from './types';
 
 const testUseCounterStateApi = (initialState: CounterState) =>
   createTestApi(counterStateApiFactory, initialState);

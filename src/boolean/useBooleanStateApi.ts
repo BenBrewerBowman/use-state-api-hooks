@@ -1,4 +1,4 @@
-import { useStateApi } from './useStateApi';
+import { useStateApi } from '../useStateApi';
 
 type Props = {
   state: boolean;

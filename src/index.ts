@@ -1,5 +1,10 @@
-export * from './useAnchorElStateApi';
-export * from './useArrayStateApi';
-export * from './useBooleanStateApi';
-export * from './useCounterStateApi';
+// state api hooks
+export * from './anchorEl/useAnchorElStateApi';
+export * from './array/useArrayStateApi';
+export * from './boolean/useBooleanStateApi';
+export * from './counter/useCounterStateApi';
+export * from './uniqueArray/useUniqueArrayStateApi';
+
+// utils
 export * from './useStateApi';
+export * from './createTestApi';

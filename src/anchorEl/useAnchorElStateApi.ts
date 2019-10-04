@@ -1,4 +1,4 @@
-import { useStateApi } from './useStateApi';
+import { useStateApi } from '../useStateApi';
 
 export type AnchorElState = null | HTMLElement;
 
