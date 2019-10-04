@@ -1,5 +1,5 @@
 import { State, SetState } from "./types";
-import { isEqual } from 'lodash';
+import _ from 'lodash';
 import { 
   insertAt as arrayInsertAt,
   push as arrayPush,
@@ -9,7 +9,7 @@ import {
 
 
 const findIndex = <T>(arr: T[], value: T) =>
-    arr.findIndex(element => isEqual(element, value));
+    arr.findIndex(element => _.isEqual(element, value));
 
 export const toggle = <T>(values: T[], state: State<T>, setState: SetState<T>) => {
   const stateCopy = [...state];
