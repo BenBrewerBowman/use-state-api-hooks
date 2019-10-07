@@ -128,6 +128,31 @@ export default ArrayExample;
 | upsertAt | Replaces value at a given index (boundary safe) |
 | deleteAt | Deletes value at a given index (boundary safe) |
 
+
+## useUniqueArrayStateApi
+State API for unique arrays (sets)
+
+
+######
+| useUniqueArrayStateApi API | Description |
+| ----------- | ----------- |
+| state | State of the array |
+| setState | Sets the array state |
+|  |  |
+| clear | Clears the array |
+|  |  |
+| pop | Removes value from end of array |
+| push | Pushes unique values onto end of array |
+| shift | removes value from beginning of array (boundary safe) |
+| unshift | Adds unique values to beginning of array |
+| reverse | Reverses array |
+| toggle | Removes or adds a unique value to the array |
+|  |  |
+| insertAt | Inserts unique value at a given index (boundary safe) |
+| upsertAt | Replaces unique value at a given index |
+| deleteAt | Deletes value at a given index (boundary safe) |
+
+
 ## useCounterStateApi
 State API for counters
 
