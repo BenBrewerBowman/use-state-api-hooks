@@ -25,6 +25,7 @@ You can read about the inspiration behind this library [here](https://medium.com
 
 - [Boolean](#usebooleanstateapi)
 - [Array](#usearraystateapi)
+- [Unique Array (Set)](#useuniquearraystateapi)
 - [Counter](#usecounterstateapi)
 - [Anchor El](#useanchorelstateapi)
 - [Creating your own state API's](#usestateapi)
