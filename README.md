@@ -28,7 +28,7 @@ You can read about the inspiration behind this library [here](https://medium.com
 - [Unique Array (Set)](#useuniquearraystateapi)
 - [Counter](#usecounterstateapi)
 - [Anchor El](#useanchorelstateapi)
-- [Creating your own state API's](#usestateapi)
+- [Creating your own state API's](#creating-your-own-stateapis)
 
 ## useBooleanStateApi
 State API for boolean values (T or F states)
@@ -61,15 +61,14 @@ const BooleanExample = () => {
 export default BooleanExample;
 ```
 
-######
-| useBooleanStateApi API | Description |
-| ----------- | ----------- |
-| state | Boolean state |
-| setState | Sets the boolean state |
-|  |  |
-| setTrue | Sets state to true |
-| setFalse | Sets state to false |
-| toggle | Toggles boolean state |
+| Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+| state | Boolean | | State of the boolean object
+| setState | Function(state: Boolean): void | | Sets the boolean state
+|  |  |  |  |
+| setTrue | Function(): void | | Sets state to true 
+| setFalse | Function(): void | | Sets state to false 
+| toggle | Function(): void | | Toggles boolean state 
 
 
 ## useArrayStateApi
@@ -111,47 +110,44 @@ const ArrayExample = () => {
 export default ArrayExample;
 ```
 
-######
-| useArrayStateApi API | Description |
-| ----------- | ----------- |
-| state | State of the array |
-| setState | Sets the array state |
-|  |  |
-| clear | Clears the array |
-|  |  |
-| pop | Removes value from end of array |
-| push | Pushes value onto end of array |
-| shift | removes value from beginning of array (boundary safe) |
-| unshift | Adds values to beginning of array |
-| reverse | Reverses array |
-|  |  |
-| insertAt | Inserts value at a given index (boundary safe) |
-| upsertAt | Replaces value at a given index (boundary safe) |
-| deleteAt | Deletes value at a given index (boundary safe) |
+| Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+| state | Array<T> | | State of the array object
+| setState | Function(state: Array<T>): void | | Sets the array state
+| | | | 
+| clear | Function(): void | | Empty's the array ([])
+| reverse | Function(): void | | Reverses the array
+| | | |
+| pop | Function(): void | | Pops value off of the end of the array (does nothing on empty array)
+| push | Function(...vals: T[]) | | Pushes values onto end of the array
+| shift | Function(): void | | Removes value from beginning of array (does nothing on empty array)
+| unshift | Function(...vals: T[]) | | Pushes values onto beginning of array
+| | | |
+| insertAt | Function(val: T, index: number): void | | Inserts value at a given index (Does nothing out of bounds)
+| upsertAt | Function(val: T, index: number): void | | Removes value from beginning of array (Does nothing out of bounds)
+| deleteAt | Function(index: number): void | | Removes value from beginning of array (Does nothing out of bounds)
 
 
 ## useUniqueArrayStateApi
 State API for unique arrays (sets)
 
-
-######
-| useUniqueArrayStateApi API | Description |
-| ----------- | ----------- |
-| state | State of the array |
-| setState | Sets the array state |
-|  |  |
-| clear | Clears the array |
-|  |  |
-| pop | Removes value from end of array |
-| push | Pushes unique values onto end of array |
-| shift | removes value from beginning of array (boundary safe) |
-| unshift | Adds unique values to beginning of array |
-| reverse | Reverses array |
-| toggle | Removes or adds a unique value to the array |
-|  |  |
-| insertAt | Inserts unique value at a given index (boundary safe) |
-| upsertAt | Replaces unique value at a given index |
-| deleteAt | Deletes value at a given index (boundary safe) |
+| Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+| state | Array<T> | | State of the array object with unique vals
+| setState | Function(state: Array<T>): void | | Sets the array state with unique vals
+| | | | 
+| clear | Function(): void | | Empty's the array ([])
+| reverse | Function(): void | | Reverses the array
+| | | |
+| toggle | Function(...vals: T[]): void | | For each val, either adds it to the array if it doesn't exist, or removes it if it already exists |
+| pop | Function(): void | | Pops value off of the end of the array (does nothing on empty array)
+| push | Function(...vals: T[]) | | Pushes unique values onto end of the array
+| shift | Function(): void | | Removes value from beginning of array (does nothing on empty array)
+| unshift | Function(...vals: T[]) | | Pushes unique values onto beginning of array
+| | | |
+| insertAt | Function(val: T, index: number): void | | Inserts unique value at a given index (Does nothing out of bounds or for nonunique vals)
+| upsertAt | Function(val: T, index: number): void | | Removes value from beginning of array (Does nothing out of bounds or for nonunique vals)
+| deleteAt | Function(index: number): void | | Removes value from beginning of array (Does nothing out of bounds)
 
 
 ## useCounterStateApi
@@ -181,19 +177,19 @@ const CounterExample = () => {
 };
 ```
 
-######
-| useCounterStateApi API | Description |
-| ----------- | ----------- |
-| count | Value of the counter |
-| min | Min boundary of the counter (default 0) |
-| max | Max boundary of the counter |
-| setState | Sets the counter state |
-|  |  |
-| increment | Increment the counter by 1 (max safe) |
-| incrementBy | Increment the counter by X (max safe) |
-|  |  |
-| decrementBy | Decrement the counter by 1 (min safe) |
-| decrementBy | Decrement the counter by X (min safe) |
+| Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+| count | Number | | Value of the counter
+| min | Number | 0 | Minimum possible value of the counter
+| max | Number | | Maximum possible value of the counter
+| setState | Function(state: {count: Number, min: Number, max: Number}): void | | Sets the counter state
+| | | | 
+| increment | Function(): void | | Increment the count by 1 (won't go above max)
+| incrementBy | Function(x: Number): void | | Increment the count by 'x' (won't go above max)
+| | | |
+| decrement | Function(): void | | Decrement the count by 1 (won't go below min)
+| incrementBy | Function(x: Number): void | | Decrement the count by 'x' (won't go below min)
+
 
 ## useAnchorElStateApi
 State API for anchor elements (ie a button that opens a menu in its location)
@@ -226,15 +222,101 @@ const AnchorElExample = () => {
 };
 ```
 
-######
-| useAnchorElStateApi API | Description |
-| ----------- | ----------- |
-| anchorEl | The anchored element |
-| clearAnchorEl | Clears the anchored element |
-| setAnchorEl | Set's the anchored element from an event |
+| Name | Type | Default | Description
+:--- | :--- | :------ | :----------
+| anchorEl | React.MouseEvent<HTMLElement> or null | | Anchored element
+| setAnchorEl | Function(element: React.MouseEvent<HTMLElement> or null): void | Sets the anchored element
+| clearAnchorEl | Function(): void | | Clears the anchored element (sets anchorEl state to null)
+| setState | Function(state: {count: Number, min: Number, max: Number}): void | | Sets the counter state
 
-## useStateApi
-State API for creating your own stateful api's. Uses memoized state and methods to prevent recomputing state api methods each rerender.
+
+## Creating your own StateAPIs
+In addition to providing some common stateful object patterns, `useStateApiHooks` can be used to build your own stateful api's. This library follows compositional factory patterns, where each stateful api has a state api factory describing the state api interface. The `useStateApi` hook is a general hook at the base of every state api hook that takes a state api factory as a first argument, and an initial state as a second argument. 
+
+```
+useStateApi(<yourStateApiFactory>, <initialState>);
+```
+
+From there, it memoizes the state and state methods, and returns your state api hook. 
+
+### useStateApi example
+Below is an example of how you would use `useStateApi` to create a boolean stateful object using JS. If you are using TS, [here](https://github.com/BenBrewerBowman/use-state-api-hooks/blob/master/src/boolean/useBooleanStateApi.ts) is the source code.
+
+```js
+// this is how to create useBooleanStateApi is created using JS
+import { useStateApi } from 'use-state-api-hooks';
+
+export const booleanStateApiFactory = ({ state, setState }) => {
+  return {
+    setTrue: () => setState(true),
+    setFalse: () => setState(false),
+    toggle: () => setState(!state),
+
+    state,
+    setState
+  };
+};
+
+export const useBooleanStateApi = (initialState) => useStateApi(booleanStateApiFactory, initialState);
+```
+
+## useStateApi compositional architecture
+For scalable architecture, `useStateApiHooks` suggests using compositional factory patterns. This will help prevent architectural problems associated with classical inheritance, and will give you decoupled reusable factory methods.
+
+```js
+
+// mammalMethods.js
+const play = (state, setState) => {...}
+const walk = (state, setState) => {...}
+const run = (state, setState) => {...}
+
+
+// useCatStateApi.js
+import { useStateApi } from 'use-state-api-hooks';
+import { play, walk, run } from './mammalMethods';
+
+export const catStateApiFactory = ({ state, setState }) => {
+  return {
+
+    // these are methods imported from mammalMethods
+    play: () => play(state, setState),
+    walk: () => walk(state, setState),
+    run: () => run(state, setState),
+
+    // these are specific cat methods
+    meow: () => {...}
+    takeBath: () => {...}
+
+    state,
+    setState
+  };
+};
+
+export const useCatStateApi = (initialState) => useStateApi(dogStateApiFactory, initialState);
+
+// useDogStateApi.js
+import { useStateApi } from 'use-state-api-hooks';
+import { play, walk, run } from './mammalMethods';
+
+export const dogStateApiFactory = ({ state, setState }) => {
+  return {
+
+    // these are methods imported from mammalMethods
+    play: () => play(state, setState),
+    walk: () => walk(state, setState),
+    run: () => run(state, setState),
+
+    // these are specific dog methods
+    bark: () => {...}
+    smile: () => {...}
+
+    state,
+    setState
+  };
+};
+
+export const useDogStateApi = (initialState) => useStateApi(dogStateApiFactory, initialState);
+```
 
 ## License
 
