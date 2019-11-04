@@ -225,7 +225,7 @@ const AnchorElExample = () => {
 | Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 | anchorEl | React.MouseEvent<HTMLElement> or null | | Anchored element
-| setAnchorEl | Function(element: React.MouseEvent<HTMLElement> or null): void | Sets the anchored element
+| setAnchorEl | Function(element: React.MouseEvent<HTMLElement> or null): void | | Sets the anchored element
 | clearAnchorEl | Function(): void | | Clears the anchored element (sets anchorEl state to null)
 | setState | Function(state: {count: Number, min: Number, max: Number}): void | | Sets the counter state
 
