@@ -45,7 +45,8 @@ export const insertAt = <T>(val: T, index: number, state: State<T>, setState: Se
 
 export const upsertAt = <T>(val: any, index: number, state: State<T>, setState: SetState<T>) => {
   if (index >= 0 && index < state.length) {
-    state[index] = val;
-    setState([...state]);
+    const stateCopy = state.slice(0);
+    stateCopy[index] = val;
+    setState(stateCopy);
   }
 };
