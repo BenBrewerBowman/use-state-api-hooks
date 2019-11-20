@@ -38,17 +38,14 @@ export const insertAt = <T>(val: T, index: number, state: State<T>, setState: Se
     setState([
       ...state.slice(0, index),
       val,
-      ...state.slice(index, state.length)
+      ...state.slice(index)
     ]);
   }
 };
 
 export const upsertAt = <T>(val: any, index: number, state: State<T>, setState: SetState<T>) => {
   if (index >= 0 && index < state.length) {
-    setState([
-      ...state.slice(0, index),
-      val,
-      ...state.slice(index + 1, state.length)
-    ]);
+    state[index] = val;
+    setState([...state]);
   }
 };
