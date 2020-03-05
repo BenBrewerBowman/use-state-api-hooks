@@ -266,9 +266,9 @@ For scalable architecture, `useStateApiHooks` suggests using compositional facto
 ```js
 
 // mammalMethods.js
-const play = (state, setState) => {...}
-const walk = (state, setState) => {...}
-const run = (state, setState) => {...}
+const play = (state) => {...}
+const walk = (state) => {...}
+const run = (state) => {...}
 
 
 // useCatStateApi.js
@@ -279,9 +279,9 @@ export const catStateApiFactory = ({ state, setState }) => {
   return {
 
     // these are methods imported from mammalMethods
-    play: () => play(state, setState),
-    walk: () => walk(state, setState),
-    run: () => run(state, setState),
+    play: () => setState(play(state)),
+    walk: () => setState(walk(state)),
+    run: () => setState(run(state)),
 
     // these are specific cat methods
     meow: () => {...}
@@ -298,22 +298,20 @@ export const useCatStateApi = (initialState) => useStateApi(dogStateApiFactory, 
 import { useStateApi } from 'use-state-api-hooks';
 import { play, walk, run } from './mammalMethods';
 
-export const dogStateApiFactory = ({ state, setState }) => {
-  return {
+export const dogStateApiFactory = ({ state, setState }) => ({
 
-    // these are methods imported from mammalMethods
-    play: () => play(state, setState),
-    walk: () => walk(state, setState),
-    run: () => run(state, setState),
+  // these are methods imported from mammalMethods
+  play: () => setState(play(state)),
+  walk: () => setState(walk(state)),
+  run: () => setState(run(state)),
 
-    // these are specific dog methods
-    bark: () => {...}
-    smile: () => {...}
+  // these are specific dog methods
+  bark: () => {...}
+  smile: () => {...}
 
-    state,
-    setState
-  };
-};
+  state,
+  setState
+});
 
 export const useDogStateApi = (initialState) => useStateApi(dogStateApiFactory, initialState);
 ```
