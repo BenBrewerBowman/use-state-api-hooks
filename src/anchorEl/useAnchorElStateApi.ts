@@ -7,16 +7,14 @@ type Props = {
   setState: (anchorEl: AnchorElState) => void;
 };
 
-export const anchorElStateApiFactory = ({ state, setState }: Props) => {
-  return {
-    clearAnchorEl: () => setState(null),
-    setAnchorEl: (event: React.MouseEvent<HTMLElement>) => {
-      setState(event.currentTarget);
-    },
+export const anchorElStateApiFactory = ({ state, setState }: Props) => ({
+  clearAnchorEl: () => setState(null),
+  setAnchorEl: (event: React.MouseEvent<HTMLElement>) => {
+    setState(event.currentTarget);
+  },
 
-    anchorEl: state
-  };
-};
+  anchorEl: state
+});
 
 export const useAnchorElStateApi = (
   initialValue: AnchorElState

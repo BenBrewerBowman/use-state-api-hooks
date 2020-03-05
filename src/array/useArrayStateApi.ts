@@ -1,6 +1,6 @@
 import { useStateApi } from '../useStateApi';
 import { upsertAt, deleteAt, insertAt, reverse, unshift, shift, push, pop, clear } from './arrayFunctions';
-import { State, SetState } from './types';
+import { State } from './types';
 
 export type ArrayStateApi<T> = {
   clear: () => void;
@@ -21,32 +21,29 @@ export type ArrayStateApi<T> = {
 
 type Props<T> = {
   state: State<T>;
-  setState: SetState<T>;
+  setState: (state: State<T>) => void;
 };
 
 export const arrayStateApiFactory = <T>({
   state,
   setState
-}: Props<T>): ArrayStateApi<T> => {
+}: Props<T>): ArrayStateApi<T> => ({
+  clear: () => setState(clear()),
+  reverse: () => setState(reverse<T>(state)),
 
-  return {
-    clear: () => clear<T>(setState),
-    reverse: () => reverse<T>(state, setState),
+  pop: () => setState(pop<T>(state)),
+  push: (...val: T[]) => setState(push<T>(val, state)),
 
-    pop: () => pop<T>(state, setState),
-    push: (...val: T[]) => push<T>(val, state, setState),
+  shift: () => setState(shift<T>(state)),
+  unshift: (...val: T[]) => setState(unshift<T>(val, state)),
 
-    shift: () => shift<T>(state, setState),
-    unshift: (...val: T[]) => unshift<T>(val, state, setState),
+  insertAt: (val: T, index: number) => setState(insertAt<T>(val, index, state)),
+  upsertAt: (val: T, index: number) => setState(upsertAt<T>(val, index, state)),
+  deleteAt: (index: number) => setState(deleteAt<T>(index, state)),
 
-    insertAt: (val: T, index: number) => insertAt<T>(val, index, state, setState),
-    upsertAt: (val: T, index: number) => upsertAt<T>(val, index, state, setState),
-    deleteAt: (index: number) => deleteAt<T>(index, state, setState),
-
-    state,
-    setState
-  };
-};
+  state,
+  setState
+});
 
 export const useArrayStateApi = <T>(initialState: T[]): ArrayStateApi<T> =>
   useStateApi(arrayStateApiFactory, initialState);

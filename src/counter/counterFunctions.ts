@@ -1,19 +1,19 @@
-import { CounterState, SetCounterState } from "./types";
+import { CounterState } from "./types";
 
-export const incrementBy = (val: number, state: CounterState, setState: SetCounterState) => {
+export const incrementBy = (val: number, state: CounterState) => {
   const { max, count } = state;
   if (max !== undefined && count + val > max) {
-    setState({ ...state, count: max });
+    return({ ...state, count: max });
   } else {
-    setState({ ...state, count: count + val });
+    return({ ...state, count: count + val });
   }
 };
 
-export const decrementBy = (val: number, state: CounterState, setState: SetCounterState) => {
+export const decrementBy = (val: number, state: CounterState) => {
   const { min, count } = state;
   if (min !== undefined && count - val <= min) {
-    setState({ ...state, count: min });
+    return({ ...state, count: min });
   } else {
-    setState({ ...state, count: count - val });
+    return({ ...state, count: count - val });
   }
 };
