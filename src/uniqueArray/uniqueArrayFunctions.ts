@@ -1,5 +1,4 @@
 import { State } from "./types";
-import _ from 'lodash';
 import { 
   insertAt as arrayInsertAt,
   push as arrayPush,
@@ -9,7 +8,7 @@ import {
 
 
 const findIndex = <T>(arr: T[], value: T) =>
-    arr.findIndex(element => _.isEqual(element, value));
+    arr.findIndex(element => JSON.stringify(element) === JSON.stringify(value));
 
 export const toggle = <T>(values: T[], state: State<T>) => {
   const stateCopy = [...state];

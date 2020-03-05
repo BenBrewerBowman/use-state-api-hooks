@@ -27,20 +27,18 @@
     "@babel/core": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "@types/jest": "^23.3.13",
-    "@types/lodash": "^4.14.141",
     "@types/react": "^16.9.2",
     "cross-env": "^5.2.0",
     "gh-pages": "^2.0.1",
-    "lodash": "^4.17.15",
     "react": "^16.9.0",
     "react-scripts": "^3.1.1",
-    "rollup": "^1.1.2",
+    "rollup": "^1.32.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-typescript2": "^0.19.2",
+    "rollup-plugin-typescript2": "^0.26.0",
     "rollup-plugin-url": "^2.1.0",
-    "typescript": "^3.2.4"
+    "typescript": "^3.8.3"
   }
 }
