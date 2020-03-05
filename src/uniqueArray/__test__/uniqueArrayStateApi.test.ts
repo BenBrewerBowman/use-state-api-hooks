@@ -1,4 +1,4 @@
-import { uniqueArrayStateApiFactory } from "./useUniqueArrayStateApi";
+import { uniqueArrayStateApiFactory } from "../useUniqueArrayStateApi";
 
 const setState = jest.fn();
 

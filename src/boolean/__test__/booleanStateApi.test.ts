@@ -1,5 +1,5 @@
-import { createTestApi } from '../createTestApi';
-import { booleanStateApiFactory } from './useBooleanStateApi';
+import { createTestApi } from '../../createTestApi';
+import { booleanStateApiFactory } from '../useBooleanStateApi';
 
 const testUseBooleanStateApi = (bool: boolean) =>
   createTestApi(booleanStateApiFactory, bool);

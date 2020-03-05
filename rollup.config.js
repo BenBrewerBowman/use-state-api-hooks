@@ -3,20 +3,20 @@ import commonjs from 'rollup-plugin-commonjs'
 import external from 'rollup-plugin-peer-deps-external'
 import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
-
-import pkg from './package.json'
+import babel from 'rollup-plugin-babel'
+// import pkg from './package.json'
 
 export default {
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.main,
+      file: 'dist/index.js',
       format: 'cjs',
       exports: 'named',
       sourcemap: true
     },
     {
-      file: pkg.module,
+      file: 'dist/index.es.js',
       format: 'es',
       exports: 'named',
       sourcemap: true
@@ -28,8 +28,13 @@ export default {
     resolve(),
     typescript({
       rollupCommonJSResolveHack: true,
+      exclude: [ "**/__test__/**" ],
       clean: true
     }),
-    commonjs()
+    commonjs(),
+    babel({
+      exclude: 'node_modules/**',
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    })
   ]
 }
