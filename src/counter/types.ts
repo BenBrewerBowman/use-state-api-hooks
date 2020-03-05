@@ -3,5 +3,3 @@ export type CounterState = {
   min?: number;
   max?: number;
 };
-
-export type SetCounterState = (state: CounterState) => void;

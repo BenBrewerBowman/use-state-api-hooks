@@ -1,21 +1,15 @@
 import { useStateApi } from '../useStateApi';
-import { deleteAt, reverse, shift, pop, clear } from '../array/arrayFunctions';
-import { State, SetState } from './types';
+import { State } from './types';
 import { push, toggle, unshift, insertAt, upsertAt } from './uniqueArrayFunctions';
+import { arrayStateApiFactory, ArrayStateApi } from '../array/useArrayStateApi';
 
-export type UniqueArrayStateApi<T> = {
-  clear: () => void;
-  reverse: () => void;
-
-  pop: () => void;
+export interface UniqueArrayStateApi<T> extends ArrayStateApi<T> {
   push: (...vals: T[]) => void;
-  shift: () => void;
   unshift: (...vals: T[]) => void;
   toggle: (...vals: T[]) => void;
 
   insertAt: (val: T, index: number) => void;
   upsertAt: (val: T, index: number) => void;
-  deleteAt: (index: number) => void;
 
   state: T[];
   setState: (val: T[]) => void;
@@ -23,33 +17,26 @@ export type UniqueArrayStateApi<T> = {
 
 type Props<T> = {
   state: State<T>;
-  setState: SetState<T>;
+  setState: (state: State<T>) => void;
 };
 
 export const uniqueArrayStateApiFactory = <T>({
   state,
   setState
-}: Props<T>): UniqueArrayStateApi<T> => {
+}: Props<T>): UniqueArrayStateApi<T> => ({
+  ...arrayStateApiFactory({ state, setState }),
 
-  return {
-    clear: () => clear<T>(setState),
-    reverse: () => reverse<T>(state, setState),
+  push: (...val: T[]) => setState(push<T>(val, state)),
+  toggle: (...val: T[]) => setState(toggle<T>(val, state)),
 
-    pop: () => pop<T>(state, setState),
-    push: (...val: T[]) => push<T>(val, state, setState),
-    toggle: (...val: T[]) => toggle<T>(val, state, setState),
+  unshift: (...val: T[]) => setState(unshift<T>(val, state)),
 
-    shift: () => shift<T>(state, setState),
-    unshift: (...val: T[]) => unshift<T>(val, state, setState),
+  insertAt: (val: T, index: number) => setState(insertAt<T>(val, index, state)),
+  upsertAt: (val: T, index: number) => setState(upsertAt<T>(val, index, state)),
 
-    insertAt: (val: T, index: number) => insertAt<T>(val, index, state, setState),
-    upsertAt: (val: T, index: number) => upsertAt<T>(val, index, state, setState),
-    deleteAt: (index: number) => deleteAt<T>(index, state, setState),
-
-    state,
-    setState
-  };
-};
+  state,
+  setState
+});
 
 export const useUniqueArrayStateApi = <T>(initialState: T[]): UniqueArrayStateApi<T> =>
   useStateApi(uniqueArrayStateApiFactory, initialState);

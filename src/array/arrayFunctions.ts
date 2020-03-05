@@ -1,51 +1,52 @@
-import { State, SetState } from "./types";
+import { State } from "./types";
 
-export const deleteAt = <T>(index: number, state: State<T>, setState: SetState<T>) => {
+export const deleteAt = <T>(index: number, state: State<T>) => {
   if (index >= 0 && index < state.length) {
-    setState([
+    return([
       ...state.slice(0, index),
       ...state.slice(index + 1, state.length)
     ]);
   }
+  return state;
 };
 
-export const clear = <T>(setState: SetState<T>) => setState([]);
+export const clear = () => [];
 
-export const pop = <T>(state: State<T>, setState: SetState<T>) => {
+export const pop = <T>(state: State<T>) => {
   if (state.length > 0) {
-    setState([...state.slice(0, state.length - 1)]);
+    return([...state.slice(0, state.length - 1)]);
   }
+  return state;
 };
 
-export const push = <T>(val: T[], state: State<T>, setState: SetState<T>) => setState([...state, ...val]);
+export const push = <T>(val: T[], state: State<T>) => [...state, ...val];
 
-export const shift = <T>(state: State<T>, setState: SetState<T>) => {
+export const shift = <T>(state: State<T>) => {
   if (state.length > 0) {
-    deleteAt<T>(0, state, setState );
+    return deleteAt<T>(0, state );
   }
+  return state;
 };
 
-export const unshift = <T>(val: T[], state: State<T>, setState: SetState<T>) => {
-  setState([...val, ...state]);
-};
+export const unshift = <T>(val: T[], state: State<T>) => [...val, ...state];
 
-export const reverse = <T>(state: State<T>, setState: SetState<T>) => {
-  setState([...state.reverse()]);
-};
+export const reverse = <T>(state: State<T>) => [...state.reverse()];
 
-export const insertAt = <T>(val: T, index: number, state: State<T>, setState: SetState<T>) => {
+export const insertAt = <T>(val: T, index: number, state: State<T>) => {
   if (index >= 0 && index < state.length) {
-    setState([
+    return([
       ...state.slice(0, index),
       val,
       ...state.slice(index)
     ]);
   }
+  return state;
 };
 
-export const upsertAt = <T>(val: any, index: number, state: State<T>, setState: SetState<T>) => {
+export const upsertAt = <T>(val: any, index: number, state: State<T>) => {
   if (index >= 0 && index < state.length) {
     state[index] = val;
-    setState([...state]);
+    return([...state]);
   }
+  return state;
 };

@@ -1,4 +1,4 @@
-import { State, SetState } from "./types";
+import { State } from "./types";
 import _ from 'lodash';
 import { 
   insertAt as arrayInsertAt,
@@ -11,7 +11,7 @@ import {
 const findIndex = <T>(arr: T[], value: T) =>
     arr.findIndex(element => _.isEqual(element, value));
 
-export const toggle = <T>(values: T[], state: State<T>, setState: SetState<T>) => {
+export const toggle = <T>(values: T[], state: State<T>) => {
   const stateCopy = [...state];
   values.forEach(value => {
     const index = findIndex(stateCopy, value);
@@ -21,39 +21,41 @@ export const toggle = <T>(values: T[], state: State<T>, setState: SetState<T>) =
       stateCopy.push(value);
     }
   });
-  setState(stateCopy);
+  return stateCopy;
 };
 
-export const push = <T>(values: T[], state: State<T>, setState: SetState<T>) => {
+export const push = <T>(values: T[], state: State<T>) => {
   const uniqueNewVals: T[] = [];
   values.forEach(value => {
     if (findIndex(state, value) < 0) {
       uniqueNewVals.push(value);
     }
   });
-  arrayPush(uniqueNewVals, state, setState);
+  return arrayPush(uniqueNewVals, state);
 };
 
-export const unshift = <T>(values: T[], state: State<T>, setState: SetState<T>) => {
+export const unshift = <T>(values: T[], state: State<T>) => {
   const uniqueNewVals: T[] = [];
   values.forEach(value => {
     if (findIndex(state, value) < 0) {
       uniqueNewVals.push(value);
     }
   });
-  arrayUnshift(uniqueNewVals, state, setState);
+  return arrayUnshift(uniqueNewVals, state);
 };
 
-export const upsertAt = <T>(val: T, index: number, state: State<T>, setState: SetState<T>) => {
+export const upsertAt = <T>(val: T, index: number, state: State<T>) => {
   const indexOfVal = findIndex(state, val);
   if (indexOfVal < 0) {
-    arrayUpsertAt(val, index, state, setState);
+    return arrayUpsertAt(val, index, state);
   }
+  return state;
 };
 
-export const insertAt = <T>(val: T, index: number, state: State<T>, setState: SetState<T>) => {
+export const insertAt = <T>(val: T, index: number, state: State<T>) => {
   const indexOfVal = findIndex(state, val);
   if (indexOfVal < 0) {
-    arrayInsertAt(val, index, state, setState);
+    return arrayInsertAt(val, index, state);
   }
+  return state;
 };

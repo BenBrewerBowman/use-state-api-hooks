@@ -9,10 +9,10 @@ type Props = {
 
 export const counterStateApiFactory = ({ state, setState }: Props) => ({
   
-  increment: () => incrementBy(1, state, setState),
-  decrement: () => decrementBy(1, state, setState),
-  incrementBy: (val: number) => incrementBy(val, state, setState),
-  decrementBy: (val: number) => decrementBy(val, state, setState),
+  increment: () => setState(incrementBy(1, state)),
+  decrement: () => setState(decrementBy(1, state)),
+  incrementBy: (val: number) => setState(incrementBy(val, state)),
+  decrementBy: (val: number) => setState(decrementBy(val, state)),
 
   ...state,
   setState

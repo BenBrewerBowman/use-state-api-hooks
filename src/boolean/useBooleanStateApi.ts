@@ -5,16 +5,14 @@ type Props = {
   setState: (value: boolean) => void;
 };
 
-export const booleanStateApiFactory = ({ state, setState }: Props) => {
-  return {
-    setTrue: () => setState(true),
-    setFalse: () => setState(false),
-    toggle: () => setState(!state),
+export const booleanStateApiFactory = ({ state, setState }: Props) => ({
+  setTrue: () => setState(true),
+  setFalse: () => setState(false),
+  toggle: () => setState(!state),
 
-    state,
-    setState
-  };
-};
+  state,
+  setState
+});
 
 export const useBooleanStateApi = (
   initialState: boolean
