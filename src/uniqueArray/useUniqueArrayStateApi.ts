@@ -1,42 +1,23 @@
 import { useStateApi } from '../useStateApi';
-import { State } from './types';
-import { push, toggle, unshift, insertAt, upsertAt } from './uniqueArrayFunctions';
-import { arrayStateApiFactory, ArrayStateApi } from '../array/useArrayStateApi';
+import { push, toggle, unshift, insertAt, upsertAt } from './uniqueArray.reducers';
+import { arrayStateApiFactory, ArrayStateApiFactory } from '../array/useArrayStateApi';
+import { Dispatch, SetStateAction } from 'react';
 
-export interface UniqueArrayStateApi<T> extends ArrayStateApi<T> {
-  push: (...vals: T[]) => void;
-  unshift: (...vals: T[]) => void;
-  toggle: (...vals: T[]) => void;
-
-  insertAt: (val: T, index: number) => void;
-  upsertAt: (val: T, index: number) => void;
-
-  state: T[];
-  setState: (val: T[]) => void;
+export type UniqueArrayStateApiFactory<T> = ArrayStateApiFactory<T> & {
+  toggle: (...val: T[]) => void;
 };
 
-type Props<T> = {
-  state: State<T>;
-  setState: (state: State<T>) => void;
-};
+export const uniqueArrayStateApiFactory = <T>(setState: Dispatch<SetStateAction<T[]>>): UniqueArrayStateApiFactory<T> => ({
+  ...arrayStateApiFactory(setState),
 
-export const uniqueArrayStateApiFactory = <T>({
-  state,
-  setState
-}: Props<T>): UniqueArrayStateApi<T> => ({
-  ...arrayStateApiFactory({ state, setState }),
+  push: (...val: T[]) => setState(push<T>(val)),
+  toggle: (...val: T[]) => setState(toggle<T>(val)),
 
-  push: (...val: T[]) => setState(push<T>(val, state)),
-  toggle: (...val: T[]) => setState(toggle<T>(val, state)),
+  unshift: (...val: T[]) => setState(unshift<T>(val)),
 
-  unshift: (...val: T[]) => setState(unshift<T>(val, state)),
-
-  insertAt: (val: T, index: number) => setState(insertAt<T>(val, index, state)),
-  upsertAt: (val: T, index: number) => setState(upsertAt<T>(val, index, state)),
-
-  state,
-  setState
+  insertAt: (val: T, index: number) => setState(insertAt<T>(val, index)),
+  upsertAt: (val: T, index: number) => setState(upsertAt<T>(val, index)),
 });
 
-export const useUniqueArrayStateApi = <T>(initialState: T[]): UniqueArrayStateApi<T> =>
-  useStateApi(uniqueArrayStateApiFactory, initialState);
+export const useUniqueArrayStateApi = <T>(initialState: T[]) =>
+  useStateApi<UniqueArrayStateApiFactory<T>, T[]>(uniqueArrayStateApiFactory, initialState);

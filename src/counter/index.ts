@@ -1,1 +1,1 @@
-export * from './counterFunctions';
+export * from './counter.reducers';

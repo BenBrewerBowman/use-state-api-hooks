@@ -1,6 +1,4 @@
-import { State } from "./types";
-
-export const deleteAt = <T>(index: number, state: State<T>) => {
+export const deleteAt = <T>(index: number) => (state: T[]) => {
   if (index >= 0 && index < state.length) {
     return([
       ...state.slice(0, index),
@@ -12,27 +10,27 @@ export const deleteAt = <T>(index: number, state: State<T>) => {
 
 export const clear = () => [];
 
-export const pop = <T>(state: State<T>) => {
+export const pop = <T>(state: T[]) => {
   if (state.length > 0) {
     return([...state.slice(0, state.length - 1)]);
   }
   return state;
 };
 
-export const push = <T>(val: T[], state: State<T>) => [...state, ...val];
+export const push = <T>(val: T[]) => (state: T[]) => [...state, ...val];
 
-export const shift = <T>(state: State<T>) => {
+export const shift = <T>(state: T[]) => {
   if (state.length > 0) {
-    return deleteAt<T>(0, state );
+    return deleteAt<T>(0)(state);
   }
   return state;
 };
 
-export const unshift = <T>(val: T[], state: State<T>) => [...val, ...state];
+export const unshift = <T>(val: T[]) => (state: T[]) => [...val, ...state];
 
-export const reverse = <T>(state: State<T>) => [...state.reverse()];
+export const reverse = <T>(state: T[]) => [...state.reverse()];
 
-export const insertAt = <T>(val: T, index: number, state: State<T>) => {
+export const insertAt = <T>(val: T, index: number) => (state: T[]) => {
   if (index >= 0 && index < state.length) {
     return([
       ...state.slice(0, index),
@@ -43,7 +41,7 @@ export const insertAt = <T>(val: T, index: number, state: State<T>) => {
   return state;
 };
 
-export const upsertAt = <T>(val: any, index: number, state: State<T>) => {
+export const upsertAt = <T>(val: T, index: number) => (state: T[]) => {
   if (index >= 0 && index < state.length) {
     state[index] = val;
     return([...state]);

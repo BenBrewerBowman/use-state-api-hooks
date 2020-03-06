@@ -1,22 +1,21 @@
 import { useStateApi } from '../useStateApi';
+import { Dispatch, SetStateAction } from 'react';
 
 export type AnchorElState = null | HTMLElement;
 
-type Props = {
-  state: AnchorElState;
-  setState: (anchorEl: AnchorElState) => void;
-};
-
-export const anchorElStateApiFactory = ({ state, setState }: Props) => ({
+export const anchorElStateApiFactory = (setState: Dispatch<SetStateAction<AnchorElState>>) => ({
   clearAnchorEl: () => setState(null),
   setAnchorEl: (event: React.MouseEvent<HTMLElement>) => {
     setState(event.currentTarget);
-  },
-
-  anchorEl: state
+  }
 });
 
 export const useAnchorElStateApi = (
   initialValue: AnchorElState
-): ReturnType<typeof anchorElStateApiFactory> =>
-  useStateApi(anchorElStateApiFactory, initialValue);
+) => {
+  const { state: anchorEl, setState, ...args } = useStateApi<ReturnType<typeof anchorElStateApiFactory>, AnchorElState>(anchorElStateApiFactory, initialValue);
+  return({
+    anchorEl,
+    ...args
+  })
+};
