@@ -1,5 +1,5 @@
 export type CounterState = {
-  count: number;
+  count?: number;
   min?: number;
   max?: number;
 };

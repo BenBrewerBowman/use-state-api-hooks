@@ -7,4 +7,3 @@ export * from './uniqueArray/useUniqueArrayStateApi';
 
 // utils
 export * from './useStateApi';
-export * from './createTestApi';

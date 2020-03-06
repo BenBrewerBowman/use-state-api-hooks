@@ -1,10 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Dispatch, SetStateAction } from 'react';
 
-export const useStateApi = (apiFactory: any, initialState: any) => {
-  const [state, setState] = useState(initialState);
-  return useMemo(() => apiFactory({ state, setState }), [
+export const useStateApi = <AF, S>(apiFactory: (setState: Dispatch<SetStateAction<S>>) => AF, initialState: S) => {
+  const [state, setState] = useState<S>(initialState);
+  return ({
+    ...useMemo(() => apiFactory(setState), [apiFactory]),
     state,
-    setState,
-    apiFactory
-  ]);
+    setState
+  });
 };

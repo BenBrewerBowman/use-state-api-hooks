@@ -1,1 +1,1 @@
-export * from './arrayFunctions';
+export * from './array.reducers';

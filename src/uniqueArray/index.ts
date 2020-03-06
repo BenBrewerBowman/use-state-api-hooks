@@ -1,1 +1,1 @@
-export * from './uniqueArrayFunctions';
+export * from './uniqueArray.reducers';

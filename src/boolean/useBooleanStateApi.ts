@@ -1,20 +1,16 @@
 import { useStateApi } from '../useStateApi';
+import { Dispatch, SetStateAction } from 'react';
 
-type Props = {
-  state: boolean;
-  setState: (value: boolean) => void;
-};
+type State = boolean;
 
-export const booleanStateApiFactory = ({ state, setState }: Props) => ({
+export const booleanStateApiFactory = (setState: Dispatch<SetStateAction<State>>) => ({
   setTrue: () => setState(true),
   setFalse: () => setState(false),
-  toggle: () => setState(!state),
-
-  state,
-  setState
+  toggle: () => setState(state => !state)
 });
 
 export const useBooleanStateApi = (
-  initialState: boolean
-): ReturnType<typeof booleanStateApiFactory> =>
-  useStateApi(booleanStateApiFactory, initialState);
+  initialState: State
+)=> useStateApi<ReturnType<typeof booleanStateApiFactory>, State>(
+  booleanStateApiFactory, initialState
+);
