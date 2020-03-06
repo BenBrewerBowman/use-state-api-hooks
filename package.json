@@ -1,6 +1,6 @@
 {
   "name": "use-state-api-hooks",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "React hooks to create stateful API's for reusable object patterns",
   "author": "BenBrewerBowman",
   "license": "MIT",
