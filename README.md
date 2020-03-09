@@ -180,9 +180,12 @@ const CounterExample = () => {
 | Name | Type | Default | Description
 :--- | :--- | :------ | :----------
 | count | Number | | Value of the counter
-| min | Number | 0 | Minimum possible value of the counter
+| min | Number | | Minimum possible value of the counter
 | max | Number | | Maximum possible value of the counter
-| setState | Function(state: {count: Number, min: Number, max: Number}): void | | Sets the counter state
+| | | |
+| setCount | Function(count: Number): void | | Sets the counter count
+| setMin | Function(min: Number): void | | Sets the counter min
+| setMax | Function(max: Number): void | | Sets the counter max
 | | | | 
 | increment | Function(): void | | Increment the count by 1 (won't go above max)
 | incrementBy | Function(x: Number): void | | Increment the count by 'x' (won't go above max)
@@ -246,16 +249,11 @@ Below is an example of how you would use `useStateApi` to create a boolean state
 // this is how to create useBooleanStateApi is created using JS
 import { useStateApi } from 'use-state-api-hooks';
 
-export const booleanStateApiFactory = ({ state, setState }) => {
-  return {
-    setTrue: () => setState(true),
-    setFalse: () => setState(false),
-    toggle: () => setState(!state),
-
-    state,
-    setState
-  };
-};
+export const booleanStateApiFactory = (setState) => ({
+  setTrue: () => setState(true),
+  setFalse: () => setState(false),
+  toggle: () => setState(!state)
+});
 
 export const useBooleanStateApi = (initialState) => useStateApi(booleanStateApiFactory, initialState);
 ```
@@ -278,17 +276,15 @@ import { play, walk, run } from './mammalMethods';
 export const catStateApiFactory = ({ state, setState }) => {
   return {
 
-    // these are methods imported from mammalMethods
-    play: () => setState(play(state)),
-    walk: () => setState(walk(state)),
-    run: () => setState(run(state)),
+    // these are methods imported from mammalMethods.
+    // setState will pass the state into each function
+    play: () => setState(play),
+    walk: () => setState(walk),
+    run: () => setState(run),
 
     // these are specific cat methods
     meow: () => {...}
     takeBath: () => {...}
-
-    state,
-    setState
   };
 };
 
@@ -301,16 +297,14 @@ import { play, walk, run } from './mammalMethods';
 export const dogStateApiFactory = ({ state, setState }) => ({
 
   // these are methods imported from mammalMethods
+  // setState will pass the state into each function
   play: () => setState(play(state)),
   walk: () => setState(walk(state)),
   run: () => setState(run(state)),
 
   // these are specific dog methods
   bark: () => {...}
-  smile: () => {...}
-
-  state,
-  setState
+  wagTail: () => {...}
 });
 
 export const useDogStateApi = (initialState) => useStateApi(dogStateApiFactory, initialState);
