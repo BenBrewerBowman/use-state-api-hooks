@@ -14,17 +14,13 @@ export const counterStateApiFactory = (setState: Dispatch<SetStateAction<Counter
   setMax: (max: CounterState['min']) => setState(setMax(max)),
 });
 
-export const useCounterStateApi = ({
-  min,
-  max,
-  count = 0,
-}: CounterState) => {
-  const {state, setState, ...counterStateApi} = useStateApi<ReturnType<typeof counterStateApiFactory>, CounterState>(counterStateApiFactory, { count, min, max });
+export const useCounterStateApi = (initialState: CounterState = { count: 0 }) => {
+  const { state: { count, min, max }, setState, ...counterStateApi } = useStateApi<ReturnType<typeof counterStateApiFactory>, CounterState>(counterStateApiFactory, initialState);
 
   return ({
-    count: state.count,
-    min: state.min,
-    max: state.max,
+    count,
+    min,
+    max,
     ...counterStateApi
   });
 };
