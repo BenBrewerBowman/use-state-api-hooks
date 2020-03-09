@@ -4,8 +4,7 @@ import { useCounterStateApi } from '../useCounterStateApi';
 describe('counterStateApi', () => {
   describe('increment', () => {
     test('adds 1 to the count', () => {
-      const initialState = { count: 0 };
-      const { result } = renderHook(() => useCounterStateApi(initialState));
+      const { result } = renderHook(() => useCounterStateApi());
       act(() => {
         result.current.increment();
       });
