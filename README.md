@@ -273,7 +273,7 @@ const run = (state) => {...}
 import { useStateApi } from 'use-state-api-hooks';
 import { play, walk, run } from './mammalMethods';
 
-export const catStateApiFactory = ({ state, setState }) => {
+export const catStateApiFactory = (setState) => {
   return {
 
     // these are methods imported from mammalMethods.
@@ -288,19 +288,19 @@ export const catStateApiFactory = ({ state, setState }) => {
   };
 };
 
-export const useCatStateApi = (initialState) => useStateApi(dogStateApiFactory, initialState);
+export const useCatStateApi = (initialState) => useStateApi(catStateApiFactory, initialState);
 
 // useDogStateApi.js
 import { useStateApi } from 'use-state-api-hooks';
 import { play, walk, run } from './mammalMethods';
 
-export const dogStateApiFactory = ({ state, setState }) => ({
+export const dogStateApiFactory = (setState) => ({
 
   // these are methods imported from mammalMethods
   // setState will pass the state into each function
-  play: () => setState(play(state)),
-  walk: () => setState(walk(state)),
-  run: () => setState(run(state)),
+  play: () => setState(play),
+  walk: () => setState(walk),
+  run: () => setState(run),
 
   // these are specific dog methods
   bark: () => {...}
